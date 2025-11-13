@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ZERON INFRA – Linea Web3 Infrastructure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #05070b;
+            color: #f5f7fa;
+            line-height: 1.6;
+        }
+        a { color: #0FA3FF; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 16px 64px;
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .logo {
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            font-size: 24px;
+        }
+        .logo span {
+            color: #0FA3FF;
+        }
+        .tagline {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            opacity: .8;
+        }
+
+        .hero {
+            margin-top: 32px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+            gap: 32px;
+        }
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .hero-title span {
+            color: #0FA3FF;
+        }
+        .hero-sub {
+            font-size: 15px;
+            opacity: .9;
+            margin-bottom: 16px;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            border-radius: 999px;
+            padding: 6px 12px;
+        }
+        .badge-blue {
+            border: 1px solid #0FA3FF;
+            color: #0FA3FF;
+            background: rgba(15,163,255,0.08);
+        }
+        .badge-dark {
+            border: 1px solid rgba(255,255,255,0.16);
+            color: #d0d4e0;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 13px;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #0FA3FF;
+            color: #020308;
+            font-weight: 600;
+        }
+        .btn-ghost {
+            border-color: rgba(255,255,255,0.16);
+            color: #e4e7f0;
+            background: transparent;
+        }
+
+        .hero-card {
+            border-radius: 16px;
+            padding: 20px 18px;
+            background: radial-gradient(circle at top left,#102a43,#05070b);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .hero-card h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .hero-metrics {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 12px;
+            font-size: 12px;
+        }
+        .metric {
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(2,6,23,0.8);
+            border: 1px solid rgba(148,163,184,0.4);
+        }
+        .metric-label {
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 10px;
+            opacity: .7;
+        }
+        .metric-value {
+            margin-top: 4px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .metric-note {
+            margin-top: 3px;
+            opacity: .7;
+            font-size: 11px;
+        }
+
+        .section {
+            margin-top: 40px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            font-size: 13px;
+            opacity: .75;
+            margin-bottom: 16px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+            gap: 16px;
+        }
+        .card {
+            padding: 16px 14px;
+            border-radius: 12px;
+            background: rgba(15,23,42,0.85);
+            border: 1px solid rgba(148,163,184,0.4);
+            font-size: 13px;
+        }
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .card small {
+            opacity: .75;
+            font-size: 11px;
+        }
+        .card ul {
+            margin-top: 8px;
+            padding-left: 18px;
+        }
+        .card li {
+            margin-bottom: 4px;
+        }
+
+        pre {
+            background: #020617;
+            border-radius: 10px;
+            padding: 14px 12px;
+            border: 1px solid rgba(148,163,184,0.5);
+            font-family: "JetBrains Mono","Fira Code",monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+
+        footer {
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(15,23,42,0.9);
+            font-size: 11px;
+            opacity: .65;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header>
+        <div>
+            <div class="logo">ZERON<span>INFRA</span></div>
+            <div class="tagline">Global Web3 Infrastructure &bull; Linea Network</div>
+        </div>
+        <div style="font-size:12px; text-align:right; opacity:.8;">
+            <div>Docs & Tools: <a href="https://github.com/ZeronInfra/zeroninfra.github.io">GitHub</a></div>
+            <div>Updates: <a href="https://x.com/ZeronInfra">@ZeronInfra</a></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <div class="hero-title">
+                    Emerging <span>Linea</span> infrastructure provider.
+                </div>
+                <p class="hero-sub">
+                    ZERON INFRA opera nós da rede Linea com foco em uptime, documentação clara
+                    e ferramentas abertas para a comunidade de desenvolvedores.
+                </p>
+                <div class="hero-badges">
+                    <span class="badge badge-blue">Linea Nodes</span>
+                    <span class="badge badge-dark">Monitoring</span>
+                    <span class="badge badge-dark">Open Docs</span>
+                </div>
+                <div class="cta-row">
+                    <a href="#nodes" class="btn btn-primary">Ver endpoints Linea</a>
+                    <a href="#docs" class="btn btn-ghost">Acessar documentação</a>
+                </div>
+            </div>
+
+            <aside class="hero-card">
+                <h3>Infra em construção – foco em qualidade</h3>
+                <p style="font-size:12px; opacity:.85;">
+                    Rodando inicialmente na mainnet Linea. Expansão futura para outras L2 e LayerZero.
+                </p>
+
+                <div class="hero-metrics">
+                    <div class="metric">
+                        <div class="metric-label">META 6 MESES</div>
+                        <div class="metric-value">1–2 nós Linea</div>
+                        <div class="metric-note">Uptime alto + monitor público.</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">STACK INICIAL</div>
+                        <div class="metric-value">Home-lab → Cloud</div>
+                        <div class="metric-note">Primeiro no Nitro 5, depois servidores dedicados.</div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="docs" class="section">
+            <div class="section-title">Sobre a ZERON INFRA</div>
+            <p class="section-sub">
+                Projeto independente focado em se tornar uma das principais referências em infraestrutura
+                para a rede Linea, entregando transparência, documentação e ferramentas para a comunidade.
+            </p>
+
+            <div class="columns">
+                <div class="card">
+                    <h3>🌐 Missão</h3>
+                    <small>Infraestrutura Web3 acessível e bem documentada.</small>
+                    <ul>
+                        <li>Rodar nós com alto uptime.</li>
+                        <li>Manter documentação simples e traduzida.</li>
+                        <li>Publicar métricas e incidentes com transparência.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🧱 Foco inicial: Linea</h3>
+                    <small>zkEVM L2 desenvolvida pela Consensys.</small>
+                    <ul>
+                        <li>Nós de execução e bootnodes prontos para integração.</li>
+                        <li>Monitoramento e alertas em tempo real (em construção).</li>
+                        <li>Guias para operadores iniciantes em português e inglês.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📚 Documentação & Comunidade</h3>
+                    <small>Aberta desde o primeiro dia.</small>
+                    <ul>
+                        <li>Repositório público no GitHub.</li>
+                        <li>Roadmap transparente de features.</li>
+                        <li>Integração futura com Discord / Telegram.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NODES -->
+        <section id="nodes" class="section">
+            <div class="section-title">Linea Node Endpoints (em teste)</div>
+            <p class="section-sub">
+                Endpoints de exemplo inspirados na documentação pública da Linea.
+                Os endereços reais serão publicados aqui quando os nós da ZERON INFRA estiverem 100% ativos.
+            </p>
+
+            <div class="columns">
+                <div class="card">
+                    <h3>🟦 Execution Layer – Bootnodes</h3>
+                    <small>Descoberta de pares para clientes de execução.</small>
+                    <pre>
+us-east-2
+• enode://0698…f3e53@123.73.210.32:31002
+
+ap-southeast-1
+• enode://22be…517f69@1.142.64.31:31004
+
+eu-north-1
+• enode://b7c1…9e51@20.235.126.31:31004
+                    </pre>
+                </div>
+
+                <div class="card">
+                    <h3>🟦 Consensus Layer – “Maru”</h3>
+                    <small>Endereços multi-região para consenso.</small>
+                    <pre>
+us-east
+• /ip4/18.223.198.165/tcp/31005/p2p/16Uiu2HAmS…
+
+ap-southeast
+• /ip4/3.1.142.64/tcp/31000/p2p/16Uiu2HAuax…
+
+eu-north
+• /ip4/13.50.94.193/tcp/31003/p2p/16Uiu2HAmVCx…
+                    </pre>
+                </div>
+            </div>
+
+            <p style="font-size:12px; opacity:.7; margin-top:10px;">
+                <strong>Nota:</strong> estes endpoints são placeholders. Quando os nós próprios da ZERON INFRA
+                estiverem estáveis, os detalhes de RPC, WebSocket e monitoramento serão publicados nesta seção.
+            </p>
+        </section>
+
+        <!-- CONTATO -->
+        <section class="section">
+            <div class="section-title">Contato & Colaborações</div>
+            <p class="section-sub">
+                Interessado em infraestrutura Linea, monitoramento ou documentação em múltiplos idiomas?
+                Entre em contato para parcerias, testes ou feedback.
+            </p>
+
+            <div class="columns">
+                <div class="card">
+                    <h3>📧 E-mail</h3>
+                    <p>zeroninfra@gmail.com</p>
+                </div>
+                <div class="card">
+                    <h3>🐦 X / Twitter</h3>
+                    <p><a href="https://x.com/ZeronInfra">@ZeronInfra</a></p>
+                </div>
+                <div class="card">
+                    <h3>💻 GitHub</h3>
+                    <p><a href="https://github.com/ZeronInfra/zeroninfra.github.io">
+                        github.com/ZeronInfra/zeroninfra.github.io
+                    </a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>© ZERON INFRA – 2025. All rights reserved.</div>
+        <div>Focused on Linea network first. Expansion to other chains planned.</div>
+    </footer>
+</div>
+</body>
+</html>
